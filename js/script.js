@@ -184,4 +184,51 @@ document.addEventListener('DOMContentLoaded', function () {
          input[i].value = '';
       }
    });
+
+   // Slider
+
+   let currentSlide = 1;
+   let slides = document.querySelectorAll('.slider-item');
+   let prev = document.querySelector('.prev');
+   let next = document.querySelector('.next');
+   let dotsWrap = document.querySelector('.slider-dots');
+   let dots = document.querySelectorAll('.dot');
+
+   function showSlides(slide) {
+      if (slide > slides.length) {
+         currentSlide = 1;
+      }
+      if (slide < 1) {
+         currentSlide = slides.length;
+      }
+      slides.forEach(item => (item.style.display = 'none')); // убираем все слайды
+
+      dots.forEach(item => item.classList.remove('dot-active')); // убираем все активные точки
+      slides[currentSlide - 1].style.display = 'block'; // показ первого слайда
+      dots[currentSlide - 1].classList.add('dot-active');
+   }
+   showSlides(currentSlide);
+
+   function plusSlides(i) {
+      showSlides((currentSlide += i));
+   }
+
+   function currenSlide(i) {
+      showSlides((currentSlide = i));
+   }
+
+   prev.addEventListener('click', () => {
+      plusSlides(-1);
+   });
+   next.addEventListener('click', () => {
+      plusSlides(1);
+   });
+
+   dotsWrap.addEventListener('click', e => {
+      for (let i = 0; i < dots.length + 1; i++) {
+         if (e.target.classList.contains('dot') && e.target === dots[i - 1]) {
+            currenSlide(i);
+         }
+      }
+   });
 });
