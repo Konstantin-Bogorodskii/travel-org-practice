@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ********* TIMER *********
 
-  let deadLine = 'October 15 2021 23:59:59 GMT+03:00';
+  let deadLine = 'October 15 2022 23:59:59 GMT+03:00';
 
   function getTimeRemaining(endtime) {
     let t = Date.parse(endtime) - Date.parse(new Date());
